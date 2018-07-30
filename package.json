@@ -1,0 +1,17 @@
+{
+  "name": "vue-demo",
+  "version": "2018.07.27",
+  "description": "demo project for vue",
+  "private": true,
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve" : "light-server -s ./src -b localhost -p 8000 -w \"src/**/*.*\""
+  },
+  "keywords": [],
+  "author": "Paresh Patel <patel.paresh@live.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "light-server": "^2.5.1"
+  }
+}

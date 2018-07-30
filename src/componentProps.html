@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Component Props Demo</title>
+		 <script type="text/javascript" src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+
+	<div id="myApp">
+		Object passed to child component using props.
+		<map-source-attr v-for="(source,idx) in mapsources"
+					v-bind:key="idx"
+					v-bind:index="idx"
+					v-bind:myprop="source.title"></map-source-attr>
+		<hr/>
+		Map source with object passed in props
+		<map-source-obj v-for="source in mapsources"
+					v-bind:key="source.title"
+					v-bind:src="source"></map-source-obj>
+	</div>
+	
+	<a href="components.html">previous</a>
+	<a href="componentEvents.html">next</a>
+	<script type="text/javascript">
+		
+		// Define a new component called button-counter
+		Vue.component('map-source-attr', {
+		  props: ['myprop',"index"],
+		  template: '<h3> {{index}} . {{myprop}}</h3>'
+		});
+
+		//please note the template literals (string literals) allowing
+		// multi line string.
+		//try removing div tag, to check the error thrown in console of
+		//browser, that enforces single root element.
+		Vue.component('map-source-obj', {
+		  props: ['src'],
+		  template: `
+		  			<div>
+		  				<h3> {{src.title}}</h3>
+		  				<p>{{src.desc}}</p>
+		  		    </div>
+		  		   `
+		});
+
+		const myApp = new Vue({ el: "#myApp",
+			data: {
+				mapsources: [
+					{id: 1, title: 'Here', desc: 'Map data from Here'},
+					{id: 2, title: 'OSM', desc: 'open source map data'},
+					{id: 3, title: 'Google', desc: 'Map data from Google'},
+					{id: 4, title: 'Mapbox', desc: 'Mapbox data using api'},
+				]
+			}
+		});
+
+	</script>
+	</body>
+</html>

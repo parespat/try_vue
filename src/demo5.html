@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Action List Demo</title>
+		 <script type="text/javascript" src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+
+	<div id="myApp">
+		Dynamic list:
+		<table width="70%" cellspacing="0" cellpadding="5" border="1">
+			<tr>
+				<th>Team</th><th>size</th><th>remark</th>
+			</tr>
+			<tr v-for="team in teams">
+				<td>{{team.name}}</td>
+				<td>{{team.size}} 
+					<button @click="team.size += 1">Add</button>
+				</td>
+				<td><span v-if="team.size > 12">LARGE TEAM!</span></td>
+			</tr>
+		</table>
+
+		<h2>Total team members: {{totalMembers}}</h2>
+			
+	</div>
+	
+	<a href="demo4.html">previous</a>
+	<a href="demo6.html">next</a>
+	<script type="text/javascript">
+		const myApp = new Vue({
+			el: "#myApp",
+			data:{
+				teams: []
+			},
+			computed: {
+				totalMembers (){
+					return this.teams.reduce((sum,team) => {
+						return sum + team.size;
+					},0);
+				}
+			},
+			created(){
+			 console.info('created');
+			 fetch('someData.json')
+			 .then(resp =>  resp.json()
+			 	.then(data => {
+			 		this.teams = data.teams;
+			 	})
+			 )
+			  .catch(e => {
+			 	console.error('error is:' + e);
+			 	//this.teams = json.teams
+			  })
+			}
+		});
+	</script>
+	</body>
+</html>

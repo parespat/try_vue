@@ -1,0 +1,10 @@
+{
+	"teams":[
+		{"id":1,"size":15,"name":"Engineering"},
+		{"id":2,"size":3,"name":"Account"},
+		{"id":3,"size":8,"name":"Sourcing"},
+		{"id":4,"size":12,"name":"Testing"},
+		{"id":5,"size":6,"name":"Sales"},
+		{"id":6,"size":14,"name":"Automation"}
+ ]
+}

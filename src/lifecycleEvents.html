@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lifecycle Demo</title>
+		 <script type="text/javascript" src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+
+	<div id="myApp">
+		Lifecycle demo :
+		<input type="number" v-model="count"/>
+		<br/>
+		Please check the console log for sequence.
+		<!-- try to uncomment the below line: the browser would crash
+			due to the infinite loop of update -->
+		<!--{{eventList}} -->
+	</div>
+	
+	<a href="demo6.html">previous</a>
+	<a href="components.html">next</a>
+	<script type="text/javascript">
+		const myApp = new Vue({
+			el: "#myApp",
+			data:{
+				count: 0,
+				eventList: []
+			},
+			beforeCreate(){
+				console.info('before create');
+				this.eventList.push("before create");
+			},
+			created(){ 
+				console.info('created');
+				this.eventList.push("created");
+			},
+			beforeMount(){
+				console.info('before mount');
+				this.eventList.push("before mount");
+			},
+			mounted(){ 
+				console.info('mounted') ;
+				this.eventList.push("mounted");
+			},
+			beforeUpdate(){
+				console.info('before update');
+				this.eventList.push("before update");
+			},
+			updated(){ 
+				console.info('updated');
+				this.eventList.push("updated"); 
+			},
+			beforeDestroy(){
+				console.info('before destroy');
+				this.eventList.push("before destroy");
+			},
+			destroyed(){ 
+				console.info('destroyed');
+				this.eventList.push("destroyed"); 
+			},
+		});
+	</script>
+	</body>
+</html>

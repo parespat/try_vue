@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demo</title>
+		 <script type="text/javascript" src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+
+	<div id="myApp">
+		{{greeting}}
+		<br/>
+
+		Welcome to {{sessionName}} session!
+		
+	</div>
+
+	<div style="font-size:0.8em;">(try changing the data values from console... Vue is reactive!) </div>
+	<a href="demo2.html">next</a>
+	<script type="text/javascript">
+		const myApp = new Vue({
+			el: "#myApp",
+			data:{
+				greeting: "Good Afternoon..",
+				sessionName: "Brownbag",
+			}
+		});
+	</script>
+	</body>
+</html>

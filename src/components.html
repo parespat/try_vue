@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Component Demo</title>
+		 <script type="text/javascript" src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+
+	<div id="myApp">
+		This is rendered from component
+		<hr/>
+		button 1: <button-counter></button-counter>
+		<br/>
+		button 2: <button-counter></button-counter>
+		<br/>
+		button 3: <button-counter></button-counter>
+	</div>
+	
+	<a href="lifecycleEvents.html">previous</a>
+	<a href="componentProps.html">next</a>
+	<script type="text/javascript">
+		
+		// Define a new component called button-counter
+		Vue.component('button-counter', {
+		  data: function() {
+		  	return {
+		      count: 0
+		  }
+		  },
+		  created() {
+		 	console.log("component created");
+		 },
+
+		  template: '<button v-on:click="count++"> clicked {{ count }} times.</button>'
+		});
+
+		const myApp = new Vue({
+		 el: "#myApp",
+		 created() {
+		 	console.log("instance created");
+		 }
+
+		});
+
+	</script>
+	</body>
+</html>

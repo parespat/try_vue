@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Component Events Demo</title>
+		 <script type="text/javascript" src="https://unpkg.com/vue"></script>
+	</head>
+	<body>
+
+	<div id="myApp">
+		Object passed to child component using props.
+		Data passed to parent component using event.
+
+		<div :style="{background: srcColor}">
+		<map-source-obj v-for="source in mapsources"
+					v-bind:key="source.id"
+					v-bind:src="source"
+					v-on:my-event="changeColor"
+					ref="mycomp"></map-source-obj>
+		</div>
+	</div>
+	
+	<a href="componentProps.html">previous</a>
+	<a href="lifecycleEvents.html">next</a>
+	<script type="text/javascript">
+		
+		Vue.component('mapSourceObj', {
+		  props: ['src'],
+		  methods: {
+				childmethod: function() {
+					console.log("child method called")
+				}
+			},
+		  template: `
+		  			<div style="border:2px solid white; padding: 5px">
+		  				<h3> {{src.title}}</h3>
+		  				<p>{{src.desc}}</p>
+		  				<button v-on:click="$emit('my-event',src.color)">
+		  				   apply color </button>
+		  		    </div>
+		  		   `,
+				   
+		});
+
+		const myApp = new Vue({ el: "#myApp",
+			data: {
+				mapsources: [
+					{id: 1, title: 'Here', desc: 'Map data from Here', color:'aqua'},
+					{id: 2, title: 'OSM', desc: 'open source map data', color:'yellow'},
+					{id: 3, title: 'Google', desc: 'Map data from Google', color:'red'},
+					{id: 4, title: 'Mapbox', desc: 'Mapbox data using api', color:'green'},
+				],
+				srcColor: 'blue',
+			},
+			methods: {
+				changeColor: function(color) {
+					this.srcColor = color;
+					this.$refs.mycomp.childmethod();
+				}
+			}
+		});
+
+	</script>
+	</body>
+</html>
